@@ -4,8 +4,20 @@ var path = require("path");
 var cookieParser = require("cookie-parser");
 var logger = require("morgan");
 
+// database connection
+const mongoose = require("mongoose");
+mongoose.set("strictQuery", false);
+const mongDB =
+  "mongodb+srv://brendanjlee5:dbpw123123@cluster0.x1ddt44.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
+
+main().catch((err) => console.log(err));
+async function main() {
+  await mongoose.connect(mongDB);
+}
+
 var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
+const { mainModule } = require("process");
 
 var app = express();
 
