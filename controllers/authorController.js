@@ -1,9 +1,21 @@
 const Author = require("../models/author");
 const asyncHandler = require("express-async-handler");
 
+/*
+  first_name: { type: String, required: true, maxLength: 100 },
+  family_name: { type: String, required: true, maxLength: 100 },
+  date_of_birth: { type: Date },
+  date_of_death: { type: Date },
+*/
+
 // display all authors
 const author_list = asyncHandler(async (req, res, next) => {
-  res.send("Author List");
+  const allAuthors = await Author.find().sort({ family_name: 1 }).exec();
+
+  res.render("author_list", {
+    title: "Authors List",
+    author_list: allAuthors,
+  });
 });
 
 // detail page for specific author
