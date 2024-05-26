@@ -8,7 +8,7 @@ const GenreSchema = new Schema({
 });
 
 // virtual url
-GenreSchema.virtual("url").get(() => {
+GenreSchema.virtual("url").get(function () {
   return `/catalog/genre/${this._id}`;
 });
 
