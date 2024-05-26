@@ -1,13 +1,7 @@
 const Author = require("../models/author");
 const Book = require("../models/book");
 const asyncHandler = require("express-async-handler");
-
-/*
-  first_name: { type: String, required: true, maxLength: 100 },
-  family_name: { type: String, required: true, maxLength: 100 },
-  date_of_birth: { type: Date },
-  date_of_death: { type: Date },
-*/
+const { body, validationResult } = require("express-validator");
 
 // display all authors
 const author_list = asyncHandler(async (req, res, next) => {
